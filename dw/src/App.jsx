@@ -6,7 +6,6 @@ function App() {
     mobile: "",
     pass: "" 
   })
-  const setLoggedIn = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
 
@@ -34,7 +33,6 @@ function App() {
               },
           })
           alert('Logged In Successfully')
-          setLoggedIn(true)
       } catch (error) {
           console.error(error)
           setError('Invalid Credentials')
