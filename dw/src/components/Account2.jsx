@@ -1,9 +1,13 @@
 import React, {useState} from 'react'
 import axios from 'axios'
-function Login() {
-    const [signInData, setSignInData] = useState({
-        mobile: "",
-        pass: "" 
+function Account2() {
+    const [formData, setFormData] = useState({
+        accountNo: "",
+        IFSCCode: "",
+        bankName: "",
+        balance: "",
+        wallet: "",
+        key: "" 
       })
       const [response, setResponse] = useState(null)
       const [isLoading, setIsLoading] = useState(false)
@@ -11,7 +15,7 @@ function Login() {
     
       function handleChangeSignIn(event) {
           const { name, value } = event.target
-          setSignInData(prevSignInData => ({
+          setFormData(prevSignInData => ({
               ...prevSignInData,
               [name]: value
           }))
@@ -22,15 +26,21 @@ function Login() {
           setIsLoading(true)
           try {
               const response = await axios({
-                  url: "http://localhost:8080/user/login",
-                  method: "POST",
+                  url: "http://localhost:8080/customer/bankaccount/delete",
+                  method: "DELETE",
                   data: JSON.stringify({
-                    mobileNumber: signInData.mobile,
-                    password: signInData.pass
+                    accountNo: formData.accountNo,
+                    IFSCCode: formData.IFSCCode,
+                    bankName: formData.bankName,
+                    balance: formData.balance,
+                    wallet: formData.wallet
                   }),
                   headers: {
                       'Content-Type': 'application/json'
                   },
+                  params: {
+                        key: formData.key
+                    }
               })
               setResponse(response)
               alert('Logged In Successfully')
@@ -48,34 +58,62 @@ function Login() {
                   className="bg-white p-8 rounded-lg shadow-md w-full max-w-sm"
                   onSubmit={handleSubmitSignIn}
               >
-                  <label
-                      htmlFor="phone"
-                      className="block text-gray-700 text-sm font-bold mb-2"
-                  >
-                      PHONE
-                  </label>
+                  <h1>Request body</h1>
                   <input
                       type="text"
                       id="phone"
-                      placeholder="Enter Phone"
-                      name="mobile"
-                      value={signInData.mobile}
+                      placeholder="Enter accountNo"
+                      name="accountNo"
+                      value={formData.accountNo}
                       onChange={handleChangeSignIn}
                       className="w-full px-3 py-2 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
                       required
                   />
-                  <label
-                      htmlFor="pswd"
-                      className="block text-gray-700 text-sm font-bold mb-2"
-                  >
-                      PASSWORD
-                  </label>
+
                   <input
-                      type="password"
-                      id="pswd"
-                      placeholder="Enter Password"
-                      name="pass"
-                      value={signInData.pass}
+                      type="text"
+                      placeholder="Enter IFSCCode"
+                      name="IFSCCode"
+                      value={formData.IFSCCode}
+                      onChange={handleChangeSignIn}
+                      className="w-full px-3 py-2 mb-6 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                      required
+                  />
+                    <input
+                      type="text"
+                      placeholder="Enter bankName"
+                      name="bankName"
+                      value={formData.bankName}
+                      onChange={handleChangeSignIn}
+                      className="w-full px-3 py-2 mb-6 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                      required
+                  />
+                  <input
+                      type="text"
+                      placeholder="Enter bankName"
+                      name="bankName"
+                      value={formData.bankName}
+                      onChange={handleChangeSignIn}
+                      className="w-full px-3 py-2 mb-6 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                      required
+                  />
+                  <input
+                      type="text"
+                      placeholder="Enter wallet"
+                      name="wallet"
+                      value={formData.wallet}
+                      onChange={handleChangeSignIn}
+                      className="w-full px-3 py-2 mb-6 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                      
+                  />
+
+                  <br></br>
+                  <h1>Params</h1>
+                  <input
+                      type="text"
+                      placeholder="Enter key"
+                      name="key"
+                      value={formData.key}
                       onChange={handleChangeSignIn}
                       className="w-full px-3 py-2 mb-6 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
                       required
@@ -85,6 +123,7 @@ function Login() {
                   )}
                   <button
                       type="submit"
+                      value = "Execute"
                       className={`w-full py-2 rounded-lg text-white transition duration-200 ${isLoading ? 'bg-gray-400' : 'bg-blue-500 hover:bg-blue-600'}`}
                       disabled={isLoading}
                   >
@@ -110,10 +149,10 @@ function Login() {
                                       d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zM12 16a4 4 0 010-8V4a8 8 0 100 16v-4z"
                                   ></path>
                               </svg>
-                              Signing In...
+                              Executing...
                           </div>
                       ) : (
-                          'Sign In'
+                          'Execute'
                       )}
                   </button>
               </form>
@@ -126,4 +165,4 @@ function Login() {
       )
 }
 
-export default Login
+export default Account2
