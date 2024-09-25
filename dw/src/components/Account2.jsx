@@ -90,9 +90,9 @@ function Account2() {
                   />
                   <input
                       type="text"
-                      placeholder="Enter bankName"
-                      name="bankName"
-                      value={formData.bankName}
+                      placeholder="Enter balance"
+                      name="balance"
+                      value={formData.balance}
                       onChange={handleChangeSignIn}
                       className="w-full px-3 py-2 mb-6 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
                       required
