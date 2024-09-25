@@ -28,6 +28,15 @@ function Home() {
           <Button path="/Beneficiery4" text="GET: beneficiaries/viewall" />
           <Button path="/Beneficiery5" text="DELETE: beneficiaries/delete" />
         </div>
+
+        <div className="col-span-full sm:col-span-1 p-4 bg-white rounded-lg shadow-md">
+          <h1 className="text-xl font-semibold mb-4 text-center">Wallet</h1>
+          <Button path="/Wallet1" text="POST: mywallet/createaccount" />
+          <Button path="/Wallet2" text="GET: mywallet/balance" />
+          <Button path="/Wallet3" text="POST: mywallet/updateaccount" />
+          <Button path="/Wallet4" text="POST: mywallet/deposit/wallet" />
+          <Button path="/Wallet5" text="POST: mywallet/transfer/mobile" />
+        </div>
       </div>
     </div>
   );
